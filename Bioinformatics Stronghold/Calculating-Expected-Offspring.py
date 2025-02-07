@@ -10,3 +10,4 @@ def expected_offspring(couples):
 couples = [1, 0, 0, 1, 0, 1]
 print(expected_offspring(couples))
 
+

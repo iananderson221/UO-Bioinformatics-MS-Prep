@@ -1,4 +1,4 @@
-#Problem 4:
+Solution 1:
 def rabbit_pairs(n, k):
     if n == 1 or n == 2:
         return 1
@@ -21,21 +21,12 @@ result = rabbit_pairs(n, k)
 # Print the result
 print(result)
 
-def fibonacci_loop_pythonic(months, offsprings):
+Solution 2:
+def rabbit_pairs(n, k):
     parent, child = 1, 1
-    for itr in range(months - 1):
-        child, parent = parent, parent + (child * offsprings)
+    for i in range(n - 1):
+        parent, child = parent, parent + (child * k)
     return child
 
-print(fibonacci_loop_pythonic(5, 3))
+print(rabbit_pairs(5, 3))
 
-"""
-o - small (children) rabbits. They have to mature and reproduce in the next cycle only.
-0 - mature (parents) rabbits. They can reproduce and move to the next cycle.
-Month 1: [o]
-Month 2: [0]
-Month 3: [0 o o]
-Month 4: [0 o o 0 0]
-Month 5: [0 o o 0 0 0 o o 0 o o]
-Month 6: [0 o o 0 0 0 o o 0 o o 0 o o 0 0 0 o o 0 0]
-"""

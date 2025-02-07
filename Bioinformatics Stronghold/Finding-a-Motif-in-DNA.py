@@ -1,4 +1,3 @@
-# Define s and t
 s = "GATATATGCATATACTT"
 t = "ATAT"
 

@@ -2,7 +2,7 @@ import math
 
 def mendel_probability(k, N):
     total_organisms = 2 ** k
-    prob_Aa_Bb = 0.25  # probability of an organism being Aa Bb
+    prob_Aa_Bb = 0.25
 
     prob_at_least_N = 0
     for i in range(N, total_organisms + 1):
@@ -10,6 +10,6 @@ def mendel_probability(k, N):
 
     return prob_at_least_N
 
-k, N = 7, 37
+k, N = 2, 1
 print(round(mendel_probability(k, N), 3))
 

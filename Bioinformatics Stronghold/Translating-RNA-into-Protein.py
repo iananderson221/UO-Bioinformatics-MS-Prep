@@ -19,7 +19,7 @@ def rna_to_protein(s):
         "UGG": "W", "CGG": "R", "AGG": "R", "GGG": "G",
     }
 
-    for i in range(0, len(s), 3):
+    for i in range(0, len(s) - len(s) % 3, 3):
         codon = s[i:i + 3]
         if codon in rna_codon_table:
             amino_acid = rna_codon_table[codon]
@@ -29,8 +29,6 @@ def rna_to_protein(s):
 
     return protein
 
-
 s = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA"
-result = rna_to_protein(s)
+print(rna_to_protein(s))
 
-print(result)
