@@ -34,3 +34,4 @@ P = "SKADYEK"
 result = protein_weight(P)
 
 print(result)
+

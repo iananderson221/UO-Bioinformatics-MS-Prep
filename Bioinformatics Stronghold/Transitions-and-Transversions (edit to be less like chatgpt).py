@@ -17,7 +17,7 @@ def transition_transversion_ratio(s1, s2):
 
     # Calculate the ratio
     if transversion_count == 0:
-        return float('inf')  # Avoid division by zero if no transversions
+        return float('inf')
     return transition_count / transversion_count
 
 

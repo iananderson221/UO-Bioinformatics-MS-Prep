@@ -1,4 +1,3 @@
-# Edit code
 def rna_splicing():
     # Codon translation table
     table = {
@@ -20,42 +19,31 @@ def rna_splicing():
         "UGG": "W", "CGG": "R", "AGG": "R", "GGG": "G"
     }
 
-    # Open and read the file using a context manager
+    # Read FASTA file
     with open("rosalind_splc.txt", "r") as file:
-        lines = file.readlines()
+        sequences = file.read().strip().split(">")[1:]  # Split into sequences, ignore first empty split
+        sequences = ["".join(seq.split("\n")[1:]) for seq in sequences]  # Remove headers, join sequences
 
-    # Extract sequences: First line is header, remaining lines are the sequences
-    introns = []
-    buffer = ''
-    for line in lines:
-        if line.startswith('>'):
-            if buffer:
-                introns.append(buffer)
-            buffer = ''
-        else:
-            buffer += line.strip()  # Removing newline characters
-    introns.append(buffer)  # Add the last sequence (the final exon)
+    # The first sequence is the full DNA sequence; the rest are introns
+    dna_seq = sequences[0]
+    introns = sequences[1:]
 
-    # The first sequence is the full sequence (including exons and introns)
-    seq = introns.pop(0)
-
-    # Remove introns from the sequence
+    # Remove introns
     for intron in introns:
-        seq = seq.replace(intron, "")
+        dna_seq = dna_seq.replace(intron, "")
 
-    # Convert DNA to RNA (T -> U)
-    seq = seq.replace('T', 'U')
+    # Transcribe DNA to RNA
+    rna_seq = dna_seq.replace("T", "U")
 
     # Translate RNA to protein
-    protein = ''
-    for i in range(0, len(seq) - 2, 3):  # Step by 3 to get codons
-        codon = seq[i:i + 3]
-        amino_acid = table.get(codon, None)
-        if amino_acid == 'Stop' or amino_acid is None:
-            break
-        protein += amino_acid
+    protein = "".join(
+        table.get(rna_seq[i:i + 3], "")  # Get amino acid from codon
+        for i in range(0, len(rna_seq) - 2, 3)
+        if table.get(rna_seq[i:i + 3]) != "Stop"
+    )
 
     print(protein)
 
 
 rna_splicing()
+

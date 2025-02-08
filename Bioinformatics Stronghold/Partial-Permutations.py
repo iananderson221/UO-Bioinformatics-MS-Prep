@@ -1,7 +1,7 @@
-n = 98
-k = 8
-r = 1
-for i in range(n - k + 1, n + 1):
-    r *= i
+import math
 
-print(r % 1000000)
+n = 21
+k = 7
+r = math.prod(range(n - k + 1, n + 1)) % 1000000
+
+print(r)
