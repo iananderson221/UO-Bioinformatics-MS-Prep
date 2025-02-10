@@ -14,10 +14,10 @@ def parse_fasta(fasta_lines):
 
     for line in fasta_lines:
         if line.startswith(">"):
-            label = line[1:]  # Remove ">" for clarity
+            label = line[1:]  #Remove ">" for clarity
             fasta_dict[label] = ""
         else:
-            fasta_dict[label] += line  # Append sequence data
+            fasta_dict[label] += line  #Append sequence data
 
     return fasta_dict
 

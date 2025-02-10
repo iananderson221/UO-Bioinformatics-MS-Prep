@@ -1,16 +1,18 @@
 def reverse_complement(pattern):
-    pattern = reverse(pattern) #reverse all letters in a string
-    pattern = complement(pattern) #complement each letter in a string
+    pattern = reverse(pattern)  #Reverse the sequence
+    pattern = complement(pattern)  #Complement each nucleotide
     return pattern
+
 
 def reverse(pattern):
     rev = ""
     for char in pattern:
-        rev = char + rev
+        rev = char + rev  #Add each character to the beginning to reverse the string
     return rev
 
+
 def complement(pattern):
-    complement = ""
+    complement = ""  #Initialize an empty string to store the complement
     for char in pattern:
         if char == "A":
             complement += "T"
@@ -21,5 +23,11 @@ def complement(pattern):
         elif char == "C":
             complement += "G"
     return complement
+
+
+#Example DNA sequence
 pattern = "AAAACCCGGT"
+
+
 print(reverse_complement(pattern))
+

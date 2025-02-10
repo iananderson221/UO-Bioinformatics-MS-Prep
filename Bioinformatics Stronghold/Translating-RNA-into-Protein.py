@@ -1,5 +1,8 @@
 def rna_to_protein(s):
+    #Initialize an empty string to store the resulting protein sequence
     protein = ""
+
+    #Define the RNA codon table that maps RNA codons to their corresponding amino acids or "Stop" signals
     rna_codon_table = {
         "UUU": "F", "CUU": "L", "AUU": "I", "GUU": "V",
         "UUC": "F", "CUC": "L", "AUC": "I", "GUC": "V",
@@ -19,16 +22,25 @@ def rna_to_protein(s):
         "UGG": "W", "CGG": "R", "AGG": "R", "GGG": "G",
     }
 
+    #Loop through the RNA sequence in steps of 3 (to extract each codon)
     for i in range(0, len(s) - len(s) % 3, 3):
-        codon = s[i:i + 3]
+        codon = s[i:i + 3]  # Extract a 3-nucleotide long codon
+
+        #Check if the codon is present in the codon table
         if codon in rna_codon_table:
-            amino_acid = rna_codon_table[codon]
+            amino_acid = rna_codon_table[codon]  # Get the corresponding amino acid or "Stop"
+
+            #If we encounter a "Stop" codon, stop the translation process
             if amino_acid == "Stop":
                 break
+
+            #Add the amino acid to the protein sequence
             protein += amino_acid
 
-    return protein
+    return protein  #Return the final protein sequence
 
 s = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA"
+
 print(rna_to_protein(s))
+
 
